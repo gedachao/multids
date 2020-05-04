@@ -1,7 +1,7 @@
-package com.kong.ds01.mapper1;
+package com.kong.ds02.mapper1;
 
-import com.kong.ds01.model.Dog;
-import com.kong.ds01.model.DogExample;
+import com.kong.ds02.model.Dog;
+import com.kong.ds02.model.DogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

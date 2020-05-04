@@ -1,5 +1,6 @@
 package com.kong.ds01.config;
 
+import lombok.Data;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -15,6 +16,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
+@Data
 @MapperScan(basePackages = "com.kong.ds01.mapper1",sqlSessionTemplateRef = "ds1SqlSessionTemplate")
 @PropertySource(value = "classpath:/db.properties",encoding = "utf-8")
 public class DbConfig1 {

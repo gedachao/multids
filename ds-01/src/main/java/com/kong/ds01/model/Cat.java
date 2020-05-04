@@ -1,7 +1,9 @@
 package com.kong.ds01.model;
 
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
 
+import java.io.Serializable;
+@AllArgsConstructor
 public class Cat implements Serializable {
     private Integer id;
 

@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: ds-01
@@ -12,3 +13,5 @@ mybatis:
 #  mapper-locations: classpath:/mybatis/**/*.xml
   type-aliases-package: com.kong.ds01.model
 
+server:
+  port: 8080

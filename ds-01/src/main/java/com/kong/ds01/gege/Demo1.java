@@ -43,4 +43,14 @@ public class Demo1 {
 
 
     }
+
+    @Test
+    public void test2(){
+        Dog dog = new Dog(10, "dog10", "suzhou");
+        int insert = dogMapper.insert(dog);
+        if(insert!=0){
+            int i = 2/0;
+        }
+
+    }
 }
