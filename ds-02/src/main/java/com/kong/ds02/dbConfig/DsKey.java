@@ -15,4 +15,12 @@ public enum DsKey {
     DsKey(String dsName) {
         this.dsName = dsName;
     }
+
+    public String getDsName() {
+        return dsName;
+    }
+
+    public void setDsName(String dsName) {
+        this.dsName = dsName;
+    }
 }

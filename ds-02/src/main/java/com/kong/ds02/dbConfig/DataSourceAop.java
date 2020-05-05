@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Slf4j
 @Component
-public class DataSourceAop implements Ordered {
+public class DataSourceAop{
 
     @Pointcut(value = "@annotation(com.kong.ds02.dbConfig.MineDataSourceI)")
     private void cut(){}
@@ -37,23 +38,20 @@ public class DataSourceAop implements Ordered {
         MineDataSourceI annotation = method.getAnnotation(MineDataSourceI.class);
         if(annotation!=null){
             //设置指定的数据源
-            DataSourceContextHolder.setDataSourceType(annotation.type().name());
-            log.info("设置数据源为：{}",annotation.type().name());
+            DataSourceContextHolder.setDataSourceType(annotation.type().getDsName());
+            log.info("{}设置数据源为：{}",this.getClass().getSimpleName(),annotation.type().getDsName());
         }else{
             //设置为默认数据源
-            DataSourceContextHolder.setDataSourceType(DsKey.DS3.name());
-            log.info("设置数据源为：{}",annotation.type().name());
+            DataSourceContextHolder.setDataSourceType(DsKey.DS3.getDsName());
+            log.info("{}设置数据源为：{}",this.getClass().getSimpleName(),annotation.type().getDsName());
         }
         try {
-            return joinPoint.proceed();
+            Object proceed = joinPoint.proceed();
+            return proceed;
         } finally {
             DataSourceContextHolder.clearDataSourceType();
-            log.info("执行完毕,数据源已清空！");
+            log.info("{}finally块,即将执行DataSourceContextHolder数据源清空工作！",this.getClass().getSimpleName());
         }
     }
 
-    @Override
-    public int getOrder() {
-        return 1;
-    }
 }
